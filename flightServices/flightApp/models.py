@@ -9,13 +9,17 @@ class Flight(models.Model):
     dateOfDeparture = models.DateField()
     estimatedTimeOfDepature = models.TimeField()
 
+    def __str__(self):
+        return self.operatingAirlines +' '+ self.flightNumber
+
 class Passenger(models.Model):
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20)
     middleName = models.CharField(max_length=20)
     email = models.EmailField()
     phone = models.CharField(max_length=10)
-
+    def __str__(self):
+        return self.firstName +' '+ self.lastName
 class Reservation(models.Model):
     flight = models.OneToOneField(Flight,on_delete=models.CASCADE)
     passenger = models.OneToOneField(Passenger,on_delete=models.CASCADE)
